@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public Camera cam;
     public Vector2 mousePos;
 
-
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
