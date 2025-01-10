@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public GameObject gameObject;
+    public GameObject bullet;
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
@@ -13,7 +13,14 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(bullet);
+        }
+    }
+    void Update()
+    {
+        if(transform.position.x < -12 || transform.position.x > 12 || transform.position.y < -6 || transform.position.y > 6)
+        {
+            Destroy(bullet);
         }
     }
 }
