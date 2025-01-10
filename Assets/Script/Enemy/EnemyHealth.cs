@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject enemy;
+    public int health;
+    void Awake()
     {
-        
+        health = 3;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(health <= 0)
+        {
+            Destroy(enemy);
+        }
     }
 }

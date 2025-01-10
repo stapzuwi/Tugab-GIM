@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Bullet : MonoBehaviour
 {
     public GameObject bullet;
     void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.tag == "Enemy")
+        {
+            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+            enemyHealth.health -= 1;
+        }
         if(other.tag == "Player")
         {
             return;
