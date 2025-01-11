@@ -13,15 +13,26 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private float _maximumSpawnTime;
 
+    [SerializeField]
+    private float xPos;
+
+    [SerializeField]
+    private float yPos;
+
     private float _timeUntilSpawn;
-    // Start is called before the first frame update
+
+    private Vector2 spawnPosition;
+
+    private int randomNumber;
+
+    public GameObject player;
+
     void Awake()
     {
         SetTimeUntilSpawn();
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         {
@@ -29,7 +40,8 @@ public class EnemySpawner : MonoBehaviour
 
             if (_timeUntilSpawn <= 0)
             {
-                Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+                RandomPosition();
+                Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
                 SetTimeUntilSpawn();
             }
         }
@@ -39,4 +51,26 @@ public class EnemySpawner : MonoBehaviour
     {
         _timeUntilSpawn = Random.Range(_minimumSpawnTime, _maximumSpawnTime);
     }
+
+    private void RandomPosition()
+    {
+        randomNumber = Random.Range(0,4);
+        if (randomNumber == 0)
+        {
+            spawnPosition = new Vector2 (xPos,Random.Range(-yPos,yPos));
+        }
+        if (randomNumber == 1)
+        {
+            spawnPosition = new Vector2 (-xPos,Random.Range(-yPos,yPos));
+        }
+        if (randomNumber == 2)
+        {
+            spawnPosition = new Vector2 (Random.Range(-xPos,xPos),yPos);
+        }
+        if (randomNumber == 3)
+        {
+            spawnPosition = new Vector2 (Random.Range(-xPos,xPos),-yPos);
+        }
+    }
+    
 }
